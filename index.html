@@ -77,25 +77,25 @@ body{background:#0a0a0c;color:#e4e4e7;font-family:'Segoe UI',system-ui,sans-seri
   </div>
 
   <!-- ============================================================ -->
-  <!-- DOWNLOAD BOX — 3 BUTTONS (with your 3 links)                  -->
+  <!-- DOWNLOAD BOX — 3 BUTTONS                                     -->
   <!-- ============================================================ -->
   <div class="download-box">
     <h3>Download links</h3>
 
-    <!-- Download button 1 -> ddownload -->
-    <a class="download-btn" href="https://ddownload.com/wbgjiw5gwb2f/Whatsapp_Gateway_|_Multi_Device_14.5.0.zip" id="downloadLink1" style="margin-bottom:10px">
+    <!-- Download button 1 - ddownload -->
+    <a class="download-btn" href="#" id="downloadLink1" style="margin-bottom:10px">
       <span>⬇</span> Download 1 - DDownload
     </a>
     <br>
 
-    <!-- Download button 2 -> katfile -->
-    <a class="download-btn" href="https://katfile.ws/ixcziuw5vjkp/Whatsapp_Gateway_|_Multi_Device_14.5.0.zip.html" id="downloadLink2" style="margin-bottom:10px">
+    <!-- Download button 2 - katfile -->
+    <a class="download-btn" href="#" id="downloadLink2" style="margin-bottom:10px">
       <span>⬇</span> Download 2 - KatFile
     </a>
     <br>
 
-    <!-- Download button 3 -> uploady -->
-    <a class="download-btn" href="https://uploady.io/axbu8wjjgalc/Whatsapp_Gateway_|_Multi_Device_14.5.0.zip" id="downloadLink3">
+    <!-- Download button 3 - uploady -->
+    <a class="download-btn" href="#" id="downloadLink3">
       <span>⬇</span> Download 3 - Uploady
     </a>
 
@@ -136,14 +136,14 @@ body{background:#0a0a0c;color:#e4e4e7;font-family:'Segoe UI',system-ui,sans-seri
   </div>
 
   <!-- ============================================================ -->
-  <!-- AD 3 - BOTTOM (Above footer)                                  -->
+  <!-- AD 3 - BOTTOM (Above link info sections)                      -->
   <!-- ============================================================ -->
   <div class="ad-container">
     <script src="https://pl29322504.profitablecpmratenetwork.com/90/18/8f/90188f0d6788c590542b7a83bead4749.js"></script>
   </div>
 
   <!-- ============================================================ -->
-  <!-- LINK INFO SECTIONS (Updated with real URLs)                   -->
+  <!-- LINK INFO SECTIONS (Visual reference only)                    -->
   <!-- ============================================================ -->
   <div class="placeholder-box">
     <div class="label">🔗 DDownload</div>
@@ -168,17 +168,50 @@ body{background:#0a0a0c;color:#e4e4e7;font-family:'Segoe UI',system-ui,sans-seri
 
 <script>
 // ================================================================
-// ⚡ DOWNLOAD URLs ARE SET DIRECTLY IN THE HREF ATTRIBUTES ABOVE
+// DOWNLOAD URLs — Edit these to change the download destinations
 // ================================================================
-// No additional JavaScript needed - the links work natively.
-// The popunder/redirect logic below is optional.
+const DOWNLOAD_URL_1 = 'https://ddownload.com/wbgjiw5gwb2f/Whatsapp_Gateway_|_Multi_Device_14.5.0.zip';
+const DOWNLOAD_URL_2 = 'https://katfile.ws/ixcziuw5vjkp/Whatsapp_Gateway_|_Multi_Device_14.5.0.zip.html';
+const DOWNLOAD_URL_3 = 'https://uploady.io/axbu8wjjgalc/Whatsapp_Gateway_|_Multi_Device_14.5.0.zip';
 
-// Optional: Popunder/interstitial on download click
+// ================================================================
+// BEHAVIOR: On click -> open ad popup/popunder -> redirect to download
+// ================================================================
+const downloadMap = {
+  downloadLink1: DOWNLOAD_URL_1,
+  downloadLink2: DOWNLOAD_URL_2,
+  downloadLink3: DOWNLOAD_URL_3,
+};
+
+// The ads already on the page (top, middle, bottom) will naturally
+// trigger their popunders on page load. On click, we also fire our
+// own popunder to the same ad network URL to maximize impressions.
+//
+// IMPORTANT: The ad scripts (Ads 1, 2, 3) are already loaded above
+// and will generate their own popunders on page load.
+// On download click, we trigger an ADDITIONAL popunder to the
+// same ad network as the first ad to ensure an ad fires.
+
 document.addEventListener('click', function(e) {
   const link = e.target.closest('a[id^="downloadLink"]');
   if (!link) return;
-  // Uncomment below to add an ad popunder before download
-  // window.open('YOUR_AD_URL', '_blank');
+
+  const url = downloadMap[link.id];
+  if (!url) return;
+
+  e.preventDefault();
+
+  // ============================================================
+  // FIRE ADDITIONAL POPUNDER/POPUP AD BEFORE THE DOWNLOAD
+  // This opens a new window/tab to trigger an ad impression.
+  // ============================================================
+  // Open the ad popup first (triggers ad view)
+  window.open('https://www.visariomedia.com/ydotdtdotd.css', '_blank');
+
+  // Give a small delay for the ad to register, then redirect
+  setTimeout(function() {
+    window.location.href = url;
+  }, 200);
 });
 </script>
 
